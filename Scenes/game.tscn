@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://jkjt5tbai10j"]
+[gd_scene load_steps=9 format=3 uid="uid://jkjt5tbai10j"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_0b8yu"]
 [ext_resource type="PackedScene" uid="uid://bv7jahf4uj8v0" path="res://Scenes/Maps/Debug/debug.tscn" id="1_ighmg"]
 [ext_resource type="Script" path="res://Scripts/UI/ui.gd" id="3_dtuef"]
 [ext_resource type="Script" path="res://Scripts/UI/score.gd" id="3_nnnuy"]
 [ext_resource type="Script" path="res://Scripts/Debug/debug_version.gd" id="5_3c3ax"]
+[ext_resource type="Texture2D" uid="uid://bh26wc67fk3id" path="res://Graphics/Backgrounds/defaultBackground.png" id="6_j7w4g"]
+[ext_resource type="Script" path="res://Scripts/MiniJeux/templateMiniGame.gd" id="6_l55t7"]
+[ext_resource type="Theme" uid="uid://bqjc8d6oo4wit" path="res://Graphics/Themes/MenuTheme.tres" id="6_moeo3"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_0b8yu")
@@ -31,6 +34,45 @@ anchors_preset = 0
 offset_right = 640.0
 offset_bottom = 480.0
 script = ExtResource("3_dtuef")
+
+[node name="MiniJeuUIContainer" type="Node" parent="UI"]
+
+[node name="MiniJeuBaignoire" type="Control" parent="UI/MiniJeuUIContainer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 479.0
+script = ExtResource("6_l55t7")
+
+[node name="Panel" type="Panel" parent="UI/MiniJeuUIContainer/MiniJeuBaignoire"]
+layout_mode = 0
+offset_right = 643.0
+offset_bottom = 479.0
+theme = ExtResource("6_moeo3")
+
+[node name="TextureRect" type="TextureRect" parent="UI/MiniJeuUIContainer/MiniJeuBaignoire/Panel"]
+layout_mode = 0
+offset_left = -141.0
+offset_top = -27.0
+offset_right = 801.0
+offset_bottom = 537.0
+texture = ExtResource("6_j7w4g")
+
+[node name="WinButton" type="Button" parent="UI/MiniJeuUIContainer/MiniJeuBaignoire/Panel"]
+layout_mode = 0
+offset_left = 258.0
+offset_top = 328.0
+offset_right = 384.0
+offset_bottom = 378.0
+text = "Win :D"
+
+[node name="CloseButton" type="Button" parent="UI/MiniJeuUIContainer/MiniJeuBaignoire/Panel"]
+layout_mode = 0
+offset_left = 581.0
+offset_top = 21.0
+offset_right = 625.0
+offset_bottom = 63.0
+text = "X"
 
 [node name="ScoreElements" type="Control" parent="UI"]
 anchors_preset = 0
@@ -66,4 +108,6 @@ grow_horizontal = 0
 grow_vertical = 0
 focus_mode = 0
 
+[connection signal="pressed" from="UI/MiniJeuUIContainer/MiniJeuBaignoire/Panel/WinButton" to="UI/MiniJeuUIContainer/MiniJeuBaignoire" method="_onWinButton"]
+[connection signal="pressed" from="UI/MiniJeuUIContainer/MiniJeuBaignoire/Panel/CloseButton" to="UI/MiniJeuUIContainer/MiniJeuBaignoire" method="_onClose"]
 [connection signal="pressed" from="UI/DebugElements/Versioning" to="UI/DebugElements" method="_on_button_pressed"]
