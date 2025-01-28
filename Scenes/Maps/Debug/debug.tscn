@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://bv7jahf4uj8v0"]
+[gd_scene load_steps=11 format=4 uid="uid://bv7jahf4uj8v0"]
 
 [ext_resource type="PackedScene" uid="uid://cma8bt0crjux0" path="res://Scenes/Player/player.tscn" id="1_4hn0q"]
 [ext_resource type="Script" path="res://Scripts/Maps/map_setup.gd" id="1_u1qa6"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://csbb1b36ogu1p" path="res://Graphics/Tilesets/City_Terrains.png" id="3_4fo1h"]
 [ext_resource type="PackedScene" uid="uid://bgqgj7765vbkd" path="res://Scenes/Props/radiateur.tscn" id="3_h3mln"]
 [ext_resource type="PackedScene" uid="uid://b1vb7txwbkq24" path="res://Scenes/Props/baignoire.tscn" id="4_skoci"]
+[ext_resource type="PackedScene" uid="uid://b8skc4gmdu524" path="res://Scenes/Props/porte.tscn" id="7_rlcsi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6qdvi"]
 texture = ExtResource("3_4fo1h")
@@ -51,3 +52,5 @@ position = Vector2(38, 114)
 
 [node name="Baignoire" parent="." instance=ExtResource("4_skoci")]
 position = Vector2(87, 67)
+
+[node name="Porte" parent="." instance=ExtResource("7_rlcsi")]

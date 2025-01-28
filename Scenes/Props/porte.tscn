@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://b8skc4gmdu524"]
+
+[ext_resource type="Script" path="res://Scripts/Props/Types/porte.gd" id="1_q5bp4"]
+[ext_resource type="PackedScene" uid="uid://br0j526p7ai4f" path="res://Scenes/MiniJeux/miniJeuTemplate.tscn" id="2_5xux1"]
+[ext_resource type="Shader" path="res://Shaders/outline.gdshader" id="3_468v7"]
+[ext_resource type="Texture2D" uid="uid://c6qpcw7ie75bt" path="res://Graphics/Props/animated_door_condominium.png" id="4_has3r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8syqh"]
+shader = ExtResource("3_468v7")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghm4g"]
+atlas = ExtResource("4_has3r")
+region = Rect2(13, 0, 23, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kp25i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghm4g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1vc3"]
+size = Vector2(27, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdpcl"]
+size = Vector2(20, 31)
+
+[node name="Porte" type="Node2D"]
+y_sort_enabled = true
+position = Vector2(102, 127)
+script = ExtResource("1_q5bp4")
+miniJeuTemplate = ExtResource("2_5xux1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_8syqh")
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_kp25i")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_v1vc3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 12.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_sdpcl")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

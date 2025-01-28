@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://br0j526p7ai4f"]
+
+[ext_resource type="Script" path="res://Scripts/MiniJeux/templateMiniGame.gd" id="1_6h3mg"]
+[ext_resource type="Theme" uid="uid://bqjc8d6oo4wit" path="res://Graphics/Themes/MenuTheme.tres" id="2_h1d07"]
+[ext_resource type="Texture2D" uid="uid://bh26wc67fk3id" path="res://Graphics/Backgrounds/defaultBackground.png" id="3_4gcpu"]
+
+[node name="MiniJeuBaignoire" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 479.0
+script = ExtResource("1_6h3mg")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 643.0
+offset_bottom = 479.0
+theme = ExtResource("2_h1d07")
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_left = -141.0
+offset_top = -27.0
+offset_right = 801.0
+offset_bottom = 537.0
+texture = ExtResource("3_4gcpu")
+
+[node name="WinButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 258.0
+offset_top = 328.0
+offset_right = 384.0
+offset_bottom = 378.0
+text = "Win :D"
+
+[node name="CloseButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 581.0
+offset_top = 21.0
+offset_right = 625.0
+offset_bottom = 63.0
+text = "X"
+
+[connection signal="pressed" from="Panel/WinButton" to="." method="_onWinButton"]
+[connection signal="pressed" from="Panel/CloseButton" to="." method="_onClose"]
