@@ -1,0 +1,90 @@
+[gd_scene load_steps=10 format=3 uid="uid://bi72vulo0758j"]
+
+[ext_resource type="Script" path="res://Scripts/MiniJeux/templateMiniGame.gd" id="1_ifj67"]
+[ext_resource type="Theme" uid="uid://bqjc8d6oo4wit" path="res://Graphics/Themes/MenuTheme.tres" id="2_fi32h"]
+[ext_resource type="Texture2D" uid="uid://bh26wc67fk3id" path="res://Graphics/Backgrounds/defaultBackground.png" id="3_p5v3u"]
+[ext_resource type="Texture2D" uid="uid://2t1h8e55htyl" path="res://Graphics/Props/animated_bathtub.png" id="4_v1eid"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bp10"]
+atlas = ExtResource("4_v1eid")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8sksn"]
+atlas = ExtResource("4_v1eid")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acyt2"]
+atlas = ExtResource("4_v1eid")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sl4a"]
+atlas = ExtResource("4_v1eid")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ousin"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bp10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8sksn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acyt2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0sl4a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MiniJeuBaignoire" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 479.0
+script = ExtResource("1_ifj67")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 15.0
+offset_right = 643.0
+offset_bottom = 479.0
+theme = ExtResource("2_fi32h")
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 63.0
+offset_right = 529.0
+offset_bottom = 373.0
+texture = ExtResource("3_p5v3u")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="WinButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 197.0
+offset_top = 295.0
+offset_right = 434.0
+offset_bottom = 345.0
+text = "Faire couler l'eau"
+
+[node name="CloseButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 462.0
+offset_top = 85.0
+offset_right = 506.0
+offset_bottom = 127.0
+text = "X"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel"]
+position = Vector2(309, 194)
+scale = Vector2(2.4375, 2.4375)
+sprite_frames = SubResource("SpriteFrames_ousin")
+
+[connection signal="pressed" from="Panel/WinButton" to="." method="_onWinButton"]
+[connection signal="pressed" from="Panel/CloseButton" to="." method="_onClose"]
